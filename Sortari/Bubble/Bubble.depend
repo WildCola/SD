@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1615637280 source:d:\cod\#tema_sd\bubble\main.cpp
+	<fstream>
+	<iostream>
+	<vector>
+	<cstdlib>
+	<math.h>
+	<ctime>
+

@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1615634522 source:d:\cod\!seminar poo\count\main.cpp
+	<fstream>
+	<iostream>
+	<vector>
+	<cstdlib>
+	<math.h>
+	<ctime>
+
+1615637124 source:d:\cod\#tema_sd\count\main.cpp
+	<fstream>
+	<iostream>
+	<vector>
+	<cstdlib>
+	<math.h>
+	<ctime>
+

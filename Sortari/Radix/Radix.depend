@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1615645517 source:d:\cod\#tema_sd\radix\main.cpp
+	<fstream>
+	<iostream>
+	<vector>
+	<cstdlib>
+	<math.h>
+	<ctime>
+
