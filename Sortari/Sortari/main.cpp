@@ -239,8 +239,8 @@ int main()
             if(a==1)
             {
                 bubble(v);
-                cout<<"Quick sort: ";
-                g<<"Quick sort: ";
+                cout<<"Bubble sort: ";
+                g<<"Bubble sort: ";
             }
 
             if(a==2)
