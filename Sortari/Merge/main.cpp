@@ -19,9 +19,62 @@ bool test_sort(vector<int> v)
 
 bool eficient(int n)
 {
-    if(n>100000)
+    if(n>10000000)
         return 0;
     return 1;
+}
+
+void Merge(vector<int>& v, int m, int st, int dr)
+{
+    vector<int> vst, vdr;
+    for(int i = 0; i <= m-st; ++i)
+        vst.push_back(v[st+i]);
+
+    for(int i = 0; i < dr-m; ++i)
+        vdr.push_back(v[m+1+i]);
+
+    int i=0, j=0, k=st;
+
+    while(i <= m-st && j < dr-m)
+    {
+        if(vst[i] <= vdr[j])
+        {
+            v[k] = vst[i];
+            ++i;
+        }
+        else
+        {
+            v[k] = vdr[j];
+            ++j;
+        }
+        ++k;
+    }
+
+    while(i <= m-st)
+    {
+        v[k] = vst[i];
+        ++k;
+        ++i;
+    }
+    while(j < dr-m)
+    {
+        v[k] = vdr[j];
+        ++k;
+        ++j;
+    }
+}
+
+void MergeSort(vector<int>& v, int st, int dr)
+{
+    if(st>=dr)
+        return;
+
+    int m = (dr+st)/2;
+
+    MergeSort(v, st, m);
+    MergeSort(v, m+1, dr);
+
+    Merge(v, m, st, dr);
 }
 
 int main()
@@ -45,12 +98,11 @@ int main()
 
         if(eficient(n))
         {
-            nmax = sqrt(nmax);
             for(int i=1; i<=n; ++i)
             {
                 int x,y;
-                x = (rand() % nmax) + 1;
-                y = (rand() % nmax) + 1;
+                x = (rand() % aux) + 1;
+                y = (rand() % aux) + 1;
                 v.push_back(x*y);
             }
 
@@ -58,33 +110,19 @@ int main()
             start = clock();
             float durata;
 
-            aux = n;
-
-            int sortat=0;
-            while(!sortat)
-            {
-                sortat = 1;
-                for(int i=0; i<aux-1; ++i)
-                    if(v[i] > v[i+1])
-                    {
-                        swap(v[i], v[i+1]);
-                        sortat = 0;
-                    }
-                --aux;
-            }
-
+            MergeSort(v, 0, n-1);
 
             durata = (clock() - start) / (float)CLOCKS_PER_SEC;
 
             if(test_sort(v))
             {
-                cout<<"Bubble sort: Sortat Corect, Timp de sortare: "<<durata<<" secunde\n\n";
-                g<<"Bubble sort: Sortat Corect, Timp de sortare: "<<durata<<" secunde\n";
+                cout<<"Merge sort: Sortat Corect, Timp de sortare: "<<durata<<" secunde\n\n";
+                g<<"Merge sort: Sortat Corect, Timp de sortare: "<<durata<<" secunde\n";
                 for(int i=0; i<n; ++i)
                     g<<v[i]<<" ";
             }
             else
-                cout<<"Bubble sort: Sortat Incorect";
+                cout<<"Merge sort: Sortat Incorect\n\n";
             g<<"\n\n";
 
         }
@@ -96,8 +134,5 @@ int main()
         }
 
     }
-
-    f.close();
-    g.close();
     return 0;
 }
